@@ -1,4 +1,4 @@
-### SETUP
+### SETUP AND FILL THE ENVIRONMENT VARIABLES
 
 ```bash
 cp .env.example .env
@@ -8,6 +8,12 @@ cp .env.example .env
 
 ```bash
 bash apply
+```
+
+### CONNECT
+
+```bash
+bash connect
 ```
 
 ### DESTROY
