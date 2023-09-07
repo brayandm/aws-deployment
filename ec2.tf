@@ -12,8 +12,14 @@ resource "aws_instance" "ec2" {
   associate_public_ip_address = false
   monitoring             = true
 
+  root_block_device {
+    volume_size           = "20"
+    volume_type           = "gp2"
+    encrypted             = true
+    delete_on_termination = true
+  }
 
   tags = {
-    Name = "server"
+    Name = "Server"
   }
 }
