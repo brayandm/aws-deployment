@@ -34,3 +34,5 @@ override.tf.json
 terraform.rc
 
 .env
+connect
+prepare_server_with_envs.sh
