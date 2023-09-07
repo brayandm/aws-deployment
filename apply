@@ -17,3 +17,12 @@ touch connect
 
 # Add the ssh connection command to the file
 echo -e "#!/bin/bash\n\nssh -i ./ssh/terraform -o StrictHostKeyChecking=no ubuntu@$(terraform output --raw ec2_public_ip)" >> connect
+
+# Substitute the variables in the prepare_server.sh file
+envsubst "$(env | grep -v '^VERSION_CODENAME=' | sed -e 's/=.*//' -e 's/^/\$/g')" < prepare_server.sh > prepare_server_with_envs.sh
+
+# Export the public ip of the ec2 instance
+export EC2_PUBLIC_IP=$(terraform output --raw ec2_public_ip)
+
+# Execute the post_apply.sh script
+bash post_apply.sh
