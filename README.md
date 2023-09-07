@@ -1,22 +1,22 @@
-### SETUP AND FILL THE ENVIRONMENT VARIABLES
+1 - Copy .env.example to .env and edit
 
 ```bash
 cp .env.example .env
 ```
 
-### APPLY
+2 - Apply
 
 ```bash
 bash apply
 ```
 
-### CONNECT
+3 - connect
 
 ```bash
 bash connect
 ```
 
-### DESTROY
+4 - Destroy
 
 ```bash
 bash destroy
