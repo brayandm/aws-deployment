@@ -3,6 +3,9 @@
 # Export the variables from the .env file
 export $(grep -v '^#' .env | xargs)
 
+# Execute the pre_destroy.sh script
+bash pre_destroy.sh
+
 # Execute the terraform destroy command
 terraform destroy -auto-approve
 
