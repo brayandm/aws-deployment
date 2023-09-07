@@ -23,3 +23,27 @@ ssh -i ./ssh/terraform -o StrictHostKeyChecking=no ubuntu@$EC2_PUBLIC_IP "echo '
 
 # Deleting the script from the server
 ssh -i ./ssh/terraform -o StrictHostKeyChecking=no ubuntu@$EC2_PUBLIC_IP "echo 'rm prepare_server_with_envs.sh' | sudo -i"
+
+# Check if the GITHUB_REPOS variable is defined
+if [ -z "${GITHUB_REPOS}" ]; then
+  echo "GITHUB_REPOS is not defined"
+  exit 1
+fi
+
+IFS=',' read -ra ADDR <<< "${GITHUB_REPOS}"
+for GITHUB_URL in "${ADDR[@]}"; do
+
+    export GITHUB_LAST_RUN=$(curl -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$GITHUB_URL/actions/runs?per_page=1&branch=main" \
+            | jq -r .workflow_runs[0].id)
+
+    curl -L \
+        -X POST \
+        -H "Accept: application/vnd.github+json" \
+        -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+        -H "X-GitHub-Api-Version: 2022-11-28" \
+        https://api.github.com/repos/$GITHUB_URL/actions/runs/$GITHUB_LAST_RUN/rerun
+done

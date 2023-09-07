@@ -20,3 +20,6 @@ echo -e "#!/bin/bash\n\nssh -i ./ssh/terraform -o StrictHostKeyChecking=no ubunt
 
 # Execute the post_apply.sh script
 bash post_apply.sh
+
+# Output the terraform output
+terraform output
