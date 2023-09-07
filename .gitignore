@@ -36,3 +36,4 @@ terraform.rc
 .env
 connect
 prepare_server_with_envs.sh
+unregister_runners.sh
