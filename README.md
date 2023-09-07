@@ -1,6 +1,7 @@
 0 - Dependencies
 
 -   terraform
+-   bash
 -   jq (json parser)
 
 1 - Copy .env.example to .env and edit
