@@ -1,19 +1,19 @@
 #!/bin/bash
 
-#Execute the pre_apply.sh script
+# Execute the pre_apply.sh script
 bash pre_apply.sh
 
-#Export the variables from the .env file
+# Export the variables from the .env file
 export $(grep -v '^#' .env | xargs)
 
-#Execute the terraform apply command
+# Execute the terraform apply command
 terraform apply -auto-approve
 
-#Remove the old ssh connection file
+# Remove the old ssh connection file
 rm -f connect 
 
-#Create a new ssh connection file
+# Create a new ssh connection file
 touch connect
 
-#Add the ssh connection command to the file
+# Add the ssh connection command to the file
 echo -e "#!/bin/bash\n\nssh -i ./ssh/terraform -o StrictHostKeyChecking=no ubuntu@$(terraform output --raw ec2_public_ip)" >> connect
