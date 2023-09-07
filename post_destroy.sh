@@ -8,3 +8,6 @@ rm -f ./connect
 
 # Remove the old prepare_server_with_envs.sh file
 rm -f prepare_server_with_envs.sh
+
+# Remove the old unregister_runners.sh file
+rm -f unregister_runners.sh
