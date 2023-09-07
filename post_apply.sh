@@ -10,7 +10,7 @@ export EC2_PUBLIC_IP=$(terraform output --raw ec2_public_ip)
 envsubst "$(env | grep -v '^VERSION_CODENAME=' | sed -e 's/=.*//' -e 's/^/\$/g')" < prepare_server.sh > prepare_server_with_envs.sh
 
 # Execute github.sh
-bash github.sh
+bash register-github-runners.sh
 
 # Copying the script to the server
 scp -i ./ssh/terraform -o StrictHostKeyChecking=no prepare_server_with_envs.sh ubuntu@$EC2_PUBLIC_IP:~
