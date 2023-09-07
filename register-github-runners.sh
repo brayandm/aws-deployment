@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source .env
-
 # Check if the GITHUB_REPOS variable is defined
 if [ -z "${GITHUB_REPOS}" ]; then
   echo "GITHUB_REPOS is not defined"
